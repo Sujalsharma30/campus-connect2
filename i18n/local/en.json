@@ -1,0 +1,20 @@
+{
+  "welcome_title": "Welcome to Campus-Connect",
+  "select_language": "Select Language",
+  "choose_lang_desc": "Choose the language you are most comfortable with.",
+  "back": "Back",
+  "next": "Next",
+  "student": "Student",
+  "faculty": "Faculty",
+  "student_login": "Student Login",
+  "faculty_portal": "Faculty Portal",
+  "student_id_label": "Enrollment / Student ID",
+  "faculty_id_label": "Employee / Faculty ID",
+  "student_placeholder": "e.g. 0827CS...",
+  "faculty_placeholder": "e.g. FAC-CS...",
+  "password": "Password",
+  "enter_password": "Enter your password",
+  "login": "Login",
+  "access_portal": "Access Portal",
+  "faculty_2fa": "Faculty access requires 2FA verification."
+}

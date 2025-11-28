@@ -1,0 +1,20 @@
+{
+  "welcome_title": "कैंपस-कनेक्ट में आपका स्वागत है",
+  "select_language": "भाषा चुनें",
+  "choose_lang_desc": "वह भाषा चुनें जिसमें आप सबसे अधिक सहज हों।",
+  "back": "वापस",
+  "next": "अगला",
+  "student": "छात्र",
+  "faculty": "शिक्षक",
+  "student_login": "छात्र लॉगिन",
+  "faculty_portal": "शिक्षक पोर्टल",
+  "student_id_label": "नामांकन / छात्र आईडी",
+  "faculty_id_label": "कर्मचारी / शिक्षक आईडी",
+  "student_placeholder": "उदा. 0827CS...",
+  "faculty_placeholder": "उदा. FAC-CS...",
+  "password": "पासवर्ड",
+  "enter_password": "अपना पासवर्ड डालें",
+  "login": "लॉगिन करें",
+  "access_portal": "पोर्टल खोलें",
+  "faculty_2fa": "शिक्षक एक्सेस के लिए 2FA सत्यापन आवश्यक है।"
+}
