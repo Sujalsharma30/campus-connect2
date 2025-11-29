@@ -10,8 +10,8 @@ export default function Header() {
       <View className="flex-row items-center justify-between">
         <View>
            {/* Added a small sub-label for better hierarchy */}
-           <Text className="text-xs font-medium text-amber-600 mb-0.5">Welcome Back,</Text>
-           <Text className="text-2xl font-bold text-gray-900">👋 Riya!</Text>
+           {/* <Text className="text-xs font-medium text-amber-600 mb-0.5">Welcome Back,</Text> */}
+           {/* <Text className="text-2xl font-bold text-gray-900">👋 Riya!</Text> */}
         </View>
 
         {/* Status Badge: Green -> Amber */}
@@ -25,7 +25,7 @@ export default function Header() {
           </View>
           
           {/* Text: Green -> Amber */}
-          <Text className="text-xs font-bold text-amber-800">Synced Today</Text>
+          {/* <Text className="text-xs font-bold text-amber-800">Synced Today</Text> */}
         </View>
 
       </View>

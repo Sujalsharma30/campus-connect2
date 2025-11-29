@@ -1,40 +1,47 @@
-import i18n from 'i18next';
-import { initReactI18next } from 'react-i18next';
+import i18n from "i18next";
+import { initReactI18next } from "react-i18next";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import * as Localization from 'expo-localization';
+import { getLocales } from "expo-localization";
 
 // Import translation files
-import en from './local/en.json';
-import hi from './local/hi.json';
+import en from "./local/en.json";
+import hi from "./local/hi.json";
 
 const resources = {
   en: { translation: en },
   hi: { translation: hi },
 };
 
-const initI18n = async () => {
-  let savedLanguage = await AsyncStorage.getItem('user-language');
+// 1. Get Device Language synchronously for immediate render
+const deviceLanguage = getLocales()[0]?.languageCode ?? 'en';
 
-  if (!savedLanguage) {
-    // Determine the user's phone language
-    const locales = Localization.getLocales();
-    savedLanguage = locales[0]?.languageCode ?? 'en';
-  }
-
-  i18n.use(initReactI18next).init({
-    compatibilityJSON: 'v3',
+i18n
+  .use(initReactI18next)
+  .init({
     resources,
-    lng: savedLanguage, // Use language detected or stored
-    fallbackLng: 'en',
+    lng: deviceLanguage, // Start with device language
+    fallbackLng: "en",
+    compatibilityJSON: 'v3',
     interpolation: {
       escapeValue: false,
     },
     react: {
-        useSuspense: false // fix for some react native crash issues
+      useSuspense: false, 
     }
   });
+
+// 2. Check for saved user preference asynchronously
+const loadSavedLanguage = async () => {
+  try {
+    const savedLanguage = await AsyncStorage.getItem('user-language');
+    if (savedLanguage) {
+      i18n.changeLanguage(savedLanguage);
+    }
+  } catch (error) {
+    console.error("Failed to load language from storage", error);
+  }
 };
 
-initI18n();
+loadSavedLanguage();
 
 export default i18n;

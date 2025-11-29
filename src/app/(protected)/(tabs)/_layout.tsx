@@ -1,87 +1,96 @@
 import { Tabs } from "expo-router";
 import { MaterialIcons } from "@expo/vector-icons";
-import DownloadHeader from "@/src/components/Downloads/Header";
-import Header from "@/src/components/Header";
-import { QuizzHeader } from "@/src/components/Quizz/QuizzHeader";
-import { SettignsHeader } from "@/src/components/Settings/SettingsHeader";
+import { useColorScheme } from "nativewind"; // Import to handle Dark Mode in Tabs
+import React from "react";
+import { View, Text } from "react-native";
+
+// Inline Header component to prevent resolve errors with external files
+const Header = () => (
+  <View className="pt-12 pb-4 px-6 bg-white dark:bg-slate-900 border-b border-gray-100 dark:border-slate-800">
+    <Text className="text-xl font-bold text-gray-900 dark:text-white">Home</Text>
+  </View>
+);
 
 export default function TabsLayout() {
+  const { colorScheme } = useColorScheme();
+  const isDark = colorScheme === "dark";
+
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: "#0ea5e9", // Primary color for active tabs
-        tabBarInactiveTintColor: "#64748b", // Gray for inactive tabs
-        headerShown: false, // Hide the header by default
+        // --- Dark Mode Colors ---
+        tabBarActiveTintColor: isDark ? "#38bdf8" : "#0ea5e9", // Light Sky Blue for Dark Mode
+        tabBarInactiveTintColor: isDark ? "#64748b" : "#94a3b8", // Slate Gray
+        
+        // --- Floating Tab Bar Styling ---
         tabBarStyle: {
           position: "absolute",
-          bottom: 10, // ⬆️ moves tab bar up from botto
+          bottom: 10,
           left: 16,
           right: 16,
-          borderRadius: 16,
-          height: 80,
-          backgroundColor: "#fff",
-          elevation: 5, // shadow for Android
-          shadowColor: "#000", // shadow for iOS
-          shadowOpacity: 0.1,
+          borderRadius: 20,
+          height: 65,
+          backgroundColor: isDark ? "#1e293b" : "#ffffff", // Dynamic Background
+          borderTopWidth: 0, // Remove default border
+          elevation: 10, // Android Shadow
+          shadowColor: "#000", // iOS Shadow
+          shadowOpacity: 0.15,
           shadowOffset: { width: 0, height: 5 },
           shadowRadius: 10,
+          paddingBottom: 10, // Center icons vertically
+          paddingTop: 10,
         },
+        tabBarLabelStyle: {
+          fontSize: 10,
+          fontWeight: "600",
+        },
+        headerShown: false, // Default to hidden (Screens manage their own headers)
       }}
     >
+      
+      {/* HOME TAB */}
       <Tabs.Screen
         name="home"
         options={{
-          headerShown: true, // Make sure the header is shown
-          header: () => <Header />, // Use your custom component
+          title: "Home",
+          headerShown: false, // Keep Header for Home
           tabBarIcon: ({ color }) => (
-            <MaterialIcons name="home" size={24} color={color} />
+            <MaterialIcons name="home-filled" size={26} color={color} />
           ),
         }}
       />
+
+      {/* TIMETABLE TAB */}
       <Tabs.Screen
-        name="downloaded"
+        name="Timetable"
         options={{
-          headerShown: true,
-          header: () => <DownloadHeader />,
+          title: "Timetable",
+          headerShown: false, // HIDDEN: TimeTableScreen has its own header now
           tabBarIcon: ({ color }) => (
-            <MaterialIcons
-              name="download-for-offline"
-              size={24}
-              color={color}
-            />
+            // Changed from 'download' to 'calendar' as it fits better
+            <MaterialIcons name="schedule" size={24} color={color} />
           ),
-          headerStyle: {
-            backgroundColor: "transparent",
-            borderBottomWidth: 0,
-            elevation: 0,
-            shadowOpacity: 0,
-          },
         }}
       />
+
+      {/* SEARCH TAB */}
       <Tabs.Screen
         name="search"
         options={{
           title: "Search",
+          headerShown: false, 
           tabBarIcon: ({ color }) => (
-            <MaterialIcons name="search" size={24} color={color} />
+            <MaterialIcons name="search" size={28} color={color} />
           ),
         }}
       />
-      {/* <Tabs.Screen
-        name="quizzes"
-        options={{
-          headerShown: true,
-          header: () => <QuizzHeader />,
-          tabBarIcon: ({ color }) => (
-            <MaterialIcons name="quiz" size={24} color={color} />
-          ),
-        }}
-      /> */}
+
+      {/* SETTINGS TAB */}
       <Tabs.Screen
         name="settings"
         options={{
-          headerShown: true,
-          header: () => <SettignsHeader />,
+          title: "Settings",
+          headerShown: false, // HIDDEN: SettingsScreen has its own header now
           tabBarIcon: ({ color }) => (
             <MaterialIcons name="settings" size={24} color={color} />
           ),
